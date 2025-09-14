@@ -1,0 +1,163 @@
+\documentclass{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{enumerate}   
+
+
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightBlue}{Blue!10}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{theorem}
+\tcolorboxenvironment{theorem}{colback=LightGreen}
+
+\declaretheoremstyle[name=Definition,]{prosty}
+\declaretheorem[style=prosty,numberwithin=section]{definition}
+\tcolorboxenvironment{definition}{colback=LightBlue}
+
+\declaretheoremstyle[name=Principle,]{prcpsty}
+\declaretheorem[style=prcpsty,numberwithin=section]{principle}
+\tcolorboxenvironment{principle}{colback=LightGreen}
+
+
+\setstretch{1.2}
+\geometry{
+    textheight=9in,
+    textwidth=5.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+% ------------------------------------------------------------------------------
+
+\begin{document}
+
+% ------------------------------------------------------------------------------
+% Cover Page and ToC
+% ------------------------------------------------------------------------------
+
+\title{ \normalsize \textsc{}
+		\\ [2.0cm]
+		\HRule{1.5pt} \\
+		\LARGE \textbf{\uppercase{Math 424}
+		\HRule{2.0pt} \\ [0.6cm] \LARGE{} \vspace*{10\baselineskip}}
+		}
+\date{}
+\author{\textbf{Author} \\ 
+		Terry Qiu \\
+		Urbana-Champaign \\
+		Fall 2025}
+
+\maketitle
+\newpage
+
+\tableofcontents
+\newpage
+
+% ------------------------------------------------------------------------------
+\section{Metric Spaces}
+\subsection{Definition of a metric space}
+\begin{definition}
+    A metric space $(M, d)$ is a set $M$ equipped with a binary operation $d:M\times M\rightarrow [0,\infty)$
+    such that
+    \begin{enumerate}[(i)]
+        \item $d(p,q) \iff p=q $
+        \item $d(p,q)=d(q,p)$
+        \item $d(p,q) \leq d(p,r)+d(r,q)$
+    \end{enumerate}
+    for all $p,q,r\in M$.
+\end{definition}
+\begin{theorem}
+    For points $p_1,p_2,...,p_n$ in a metric space.
+    \[
+    d(p_1, p_n) \leq d(p_1, p_2)+d(p_2,p_3)+...+d(p_{n-1},p_n)
+    \]
+\end{theorem}
+\begin{proof}
+    Notice that for $n=2$, $d(p_1,p_2)\leq d(p_1,p_2)$. Notice also that for $n=3$,
+    $d(p_1,p_3)\leq d(p_1,p_2)+ d(p_2,p_3)$.
+    These are our base cases.\\\\
+    Suppose that the identity is true for $n\leq k-1$, we want to show that it is true for
+    $n=k$. Notice that by the triangle inequality
+    \[
+    d(p_1,p_k)\leq d(p_1,p_2)+ d(p_2,p_k)
+    \]
+    By induction 
+     \[
+    d(p_1,p_k)\leq d(p_1,p_2)+ d(p_2,p_k)\leq d(p_1,p_2)+ d(p_2,p_3) +...+d(p_{k-1},p_k)
+    \]
+\end{proof}
+\begin{theorem}
+    If $p,q,r$ are points in a metric space then 
+    \[
+    |d(p,r)-d(q,r)| \leq d(p,q)
+    \]
+\end{theorem}
+
+\subsection{Open and closed sets}
+\begin{definition}
+    Let $M$ be a metric space and let $p_0$ be an element of $E$. The set
+    \[
+    U(p_0,r) = \{p\in M| d(p_0, p) < r\}
+    \]
+    is called the open ball with radius $r$ centered at $p_0$. The closed ball centered at $p_0$ 
+    with radius $r$ is the set
+    \[
+    U(p_0,r) = \{p\in M| d(p_0, p) \leq r\}
+    \]
+
+\end{definition}
+
+\begin{definition}
+    A subset $S$ of a metric space is an \textbf{open} set if for every point $s$ in $S$ there exists an open ball $U$ centered at that point such that 
+    $U\subseteq S$.
+\end{definition}
+The following is true for open subsets
+\begin{theorem}
+    A finite intersection of open subsets is open
+\end{theorem}
+\begin{proof}
+    Let $S_1,S_2,...,S_n$ be open subsets of a metric space $M$. Let \[ S=\bigcap_{i=1,2,...,n}S_i\] be the intersection. Take any element $p$ of the intersection. 
+    Since it is in each $S$, there exists an open ball centered at $p$ with radius $r_i$ for each $S_i$. Let $r=\min{(r_1,r_2,...,r_n)}$. Without loss of generality, suppose that
+    $r_1 \leq r_2\leq...\leq r_n$, then by definition $U(p,r) =U(p,r_1) \subseteq U(p, r_2) \subseteq ... \subseteq U(p, r_n)$. But then each of these balls are contained within their respective open
+    subsets $S_i$. So the open ball centered at $p$ with radius $r$ is contained within each of $S_i$ so it is contained in the intersection of all $S_i$.
+\end{proof}
+\begin{theorem}
+    A open ball is an open set
+\end{theorem}
+\begin{definition}
+    A subset $S$ of a metric space is closed if its complement is open.
+\end{definition}
+\begin{theorem}
+    A closed ball is a closed set
+\end{theorem}
+
+
+
+% ------------------------------------------------------------------------------
+% Reference and Cited Works
+% ------------------------------------------------------------------------------
+
+\bibliographystyle{IEEEtran}
+\bibliography{References.bib}
+
+% ------------------------------------------------------------------------------
+
+\end{document}
