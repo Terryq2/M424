@@ -148,6 +148,77 @@ The following is true for open subsets
 \begin{theorem}
     A closed ball is a closed set
 \end{theorem}
+\newpage
+\subsection{Convergent Sequences}
+\begin{definition}
+    We say that a sequence of points $(x_n)$ is converges to $p$ if for every $\epsilon>0$, we can
+    find an $N$ such that for all $n> N$, we have 
+    \[
+    d(x_n,p)<\epsilon
+    \]
+\end{definition}
+In other words, for a convergent sequence there always exists a $N$-tail such that all terms in that $N$-tail are epsilon
+close to $p$.
+\begin{theorem}
+    In a metric space $(X,d)$, every convergent has only one limit.
+\end{theorem}
+\begin{proof}
+    Suppose there exists two limits $p_0$ and $p_1$ for some convergent sequence $(x_n)$. Then for each $\epsilon >0$,
+    there exists $N,M$ such that $d(x_m, p_0)< \epsilon$, and $d(x_n, p_0)< \epsilon$ for all $n>N$ and $m>M$. Let $N'=\max(N,M)$,
+    then for each $n>N'$. $d(p_0, p_1)\leq d(p_0, x_n)+d(x_n, p_1)< \epsilon + \epsilon= 2\epsilon$. But if $d(p_0,p_1)$ is not $0$, 
+    there is a contradiction for all $\epsilon \leq \frac{d(p_0,p_1)}{2}$. So $d(p_0,p_1)=0$, in other words $p_0=p_1$.
+\end{proof}
+\begin{theorem}
+    Any infinite subsequence of a convergent sequence converges to the same limit.
+\end{theorem}
+\begin{proof}
+    Suppose $(x_n)$ is a convergent sequence with limit $p$. Then for each $\epsilon>0$, there exists an $N$ such that for all $n>N$,
+    $d(x_n,p)<\epsilon$. Suppose that $n_1,n_2,n_3,...$is a strictly increasing sequence and that $(x_{n_m})$ defines a subsequence of $(x_n)$. For each $\epsilon>0$, since we can find an $N$ such that the $N$
+    tail of $(x_n)$ is $\epsilon$ close to $p$, it is also the case that for each $n_m>N$, that $d(x_{n_m}, p)<\epsilon$. But this is precisely what it means for 
+    $(x_{n_m})$ to be convergent. For any $\epsilon >0$ we can find an $N$ such that all terms in $(x_{n_m})$ after $N$ is $\epsilon$ close to $p$
+\end{proof}
+\begin{definition}
+    A subset $S$ of a metric space is bounded if for every $s,t$ in $S$, there exists an $r>0$ such that $d(s,t)<r$. In other words, all elements 
+    are contained within some open ball, so that no two elements are more than $r$ away from each other.
+\end{definition}
+\begin{definition}
+    We say that a sequence $(x_n)$ is bounded if the set containing its terms $\left\{ x_1,x_2,x_3,... \right\}$ is bounded
+\end{definition}
+\begin{theorem}
+    If the elements of a subset $S$ of a metric space is contained within an open ball of radius $r$ centered at some point $p$, then it is bounded
+\end{theorem}
+\begin{proof}
+    Notice that it is enough to show that $d(s_1,s_2)<k$ between any two element $s_1,s_2$ for some $k>0$. Since $d(s,p)<r$ for any $s\in S$, any two terms in the sequence say $s_1, s_2$ satisfy $d(s_1,s_2)\leq d(s_1,p) +d(p,s_1)<2r$.
+    So we have found a $k$ such that any two elements is no more than $k$ away. This is precisely what it means for a set to be bounded. 
+\end{proof}
+\begin{theorem}
+    Every convergent sequence is bounded.
+\end{theorem}
+\begin{proof}
+    Let $(x_n)$ be convergent sequence that converges to $p$. Then pick some $\epsilon >0$. By definition, there exists an $N$ such that for all $n>N$,
+    $d(x_n, p)< \epsilon$. So every element of $\left\{ x_n,x_{n+1},\dots \right\}$ is contained within some open ball centered at $p$. To encompass the terms before $N$, let the 
+    radius of some open ball be 
+    \[
+    r=\max\{ \epsilon, d(x_1,p),..., d(x_N,p)\}+1
+    \]
+    Then the set containing every term of the sequence is contained within an open ball of radius $r>0$, by theorem $1.9$, this means that the set is bounded. By definition, if the set containing
+    the terms of the sequence is bounded, the sequence is bounded.
+\end{proof}
+\begin{theorem}
+    A set $S$ is closed if and only if whenever $p_1,p_2,p_3,...$ is a convergent sequence of points in $S$, then the limit of that sequence is in $S$.
+\end{theorem}
+\begin{proof}
+    Suppose that $S$ is closed and consider a convergent sequence $(p_n)$
+\end{proof}
+
+In other words, a subset $S$ of a metric space is closed if any convergent sequence in $S$ has a limit in $S$.
+
+
+\newpage
+\subsection{Completeness}
+\subsection{Compactness}
+\subsection{Connectedness}
+
 
 
 
